@@ -2,7 +2,7 @@
 % Please edit documentation in R/CliDaMon.R
 \name{ClimateByMonth}
 \alias{ClimateByMonth}
-\title{Estimate monthly heating degree days and solar radiation by postcode}
+\title{Calculate monthly climate data - heating degree days and solar radiation by postcode}
 \usage{
 ClimateByMonth(
   myClimateData_PostCodes,
@@ -163,8 +163,9 @@ As a data source tables from the data package clidamonger
 "Climate Data Monthly Germany" are used. The temperature and global radiation data
 in clidamonger have been measured and published by "DWD - Deutscher Wetterdienst".
 More information about the data sources can be found in the
-IWU Excel file "Gradtagzahlen-Deutschland".xlsx
+IWU Excel workbook "Gradtagzahlen-Deutschland.xlsx"
 Download at: https://www.iwu.de/publikationen/fachinformationen/energiebilanzen/#c205
+The procedures of this package are similar to those of the Excel workbook but not identical.
 }
 \examples{
 
