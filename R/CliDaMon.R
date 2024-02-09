@@ -470,6 +470,7 @@ ClimateByMonth <- function (
   ClimCalcColNames <-
     c(
       "ID",
+      "Month", # 2023-12-08: supplemented
       "D",
       "TA",
       "TA_HD",
@@ -1595,6 +1596,12 @@ ClimateByMonth <- function (
   # Initialisation
 
   myDF_ClimCalc [2 : n_Col_DF_ClimCalc] <- 0
+
+
+  # 2023-12-08 supplemented
+  myDF_ClimCalc$Month [1:12] <- myDF_Evaluation$Month [1:12]
+  myDF_ClimCalc$Month [13] <- 0
+
 
   #i_Year <- 1 # Test of loop
 

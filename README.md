@@ -22,7 +22,7 @@ The output consists of the following data frames:
 - **"DF_StationInfo":**       
     a dataframe containing information about the used climate stations.
 
-- **"DF_FunctionArguments":** 
+- **"DF_FunctionArguments":**   
     a dataframe containing the values of all function arguments (one row).
 
 - **"DF_OutputStructure":**   
