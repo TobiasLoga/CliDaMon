@@ -51,7 +51,7 @@
 #' Download at: https://www.iwu.de/publikationen/fachinformationen/energiebilanzen/#c205
 #' The procedures of this package are similar to those of the Excel workbook but not identical.
 #'
-#' @param myClimateData_PostcCdes a dataframe from the data package clidamonger
+#' @param myClimateData_Postcodes a dataframe from the data package clidamonger
 #' containing all German postcodes (variable "ID_Location_StationMapping",
 #' example: "DE.PC.01.64295" for the postcode 64295)
 #' and their geographical coordinates (variables "Latitude" and "Longitude").
@@ -159,7 +159,7 @@
 #' Default value: 20 [°C].
 #'
 #' @param Degree_Inclination_Solar an (optional) integer indicating the inclination angle
-#' of the inclined surface for which the global rroadiation is estimated.
+#' of the inclined surface for which the global radiation is estimated.
 #' Possible values: 0, 30, 45, 60, 90 [°] (arc degree).
 #' Default value: 45 [°] (arc degree).
 #'

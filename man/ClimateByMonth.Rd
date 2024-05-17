@@ -117,19 +117,19 @@ Default value: 1.}
 \item{Temperature_HDD_Base}{an (optional) integer indicating the base temperature
 in degree Celsius. When the average day temperature is below this base temperature
 the day is counted as heating day.
-Possible values: 10, 12, 15 \link[=Â°C]{°C};
-default value: 15 \link[=Â°C]{°C}.}
+Possible values: 10, 12, 15 \link{°C};
+default value: 15 \link{°C}.}
 
 \item{Temperature_HDD_Room}{an (optional) integer indicating the room temperature
 in degree Celsius, used for calculating the room heating degree days RHDD.
-Default value: 20 \link[=Â°C]{°C}.}
+Default value: 20 \link{°C}.}
 
 \item{Degree_Inclination_Solar}{an (optional) integer indicating the inclination angle
-of the inclined surface for which the global rroadiation is estimated.
-Possible values: 0, 30, 45, 60, 90 \link[=Â°]{°} (arc degree).
-Default value: 45 \link[=Â°]{°} (arc degree).}
+of the inclined surface for which the global radiation is estimated.
+Possible values: 0, 30, 45, 60, 90 \link{°} (arc degree).
+Default value: 45 \link{°} (arc degree).}
 
-\item{myClimateData_PostcCdes}{a dataframe from the data package clidamonger
+\item{myClimateData_Postcodes}{a dataframe from the data package clidamonger
 containing all German postcodes (variable "ID_Location_StationMapping",
 example: "DE.PC.01.64295" for the postcode 64295)
 and their geographical coordinates (variables "Latitude" and "Longitude").
