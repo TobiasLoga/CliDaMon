@@ -1,0 +1,45 @@
+{
+  "R": {
+    "Version": "4.4.0",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://packagemanager.posit.co/cran/latest"
+      }
+    ]
+  },
+  "Packages": {
+    "AuxFunctions": {
+      "Package": "AuxFunctions",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "TobiasLoga",
+      "RemoteRepo": "AuxFunctions",
+      "RemoteRef": "main",
+      "RemoteSha": "3ae885e25220034a8db2c490a1140120c736a974",
+      "Hash": "875c7f874cce19df3b3a179b946ca2c3"
+    },
+    "clidamonger": {
+      "Package": "clidamonger",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "913cca06caa2795d3c3591aa6d8219de"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "1.0.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "utils"
+      ],
+      "Hash": "397b7b2a265bc5a7a06852524dabae20"
+    }
+  }
+}
