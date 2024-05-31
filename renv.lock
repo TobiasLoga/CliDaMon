@@ -18,8 +18,8 @@
       "RemoteUsername": "TobiasLoga",
       "RemoteRepo": "AuxFunctions",
       "RemoteRef": "main",
-      "RemoteSha": "3ae885e25220034a8db2c490a1140120c736a974",
-      "Hash": "875c7f874cce19df3b3a179b946ca2c3"
+      "RemoteSha": "10a97ce6c99aa02d8632bb8df2fb7058a3a16254",
+      "Hash": "c570c87834ec056398651f70dd2f0e57"
     },
     "clidamonger": {
       "Package": "clidamonger",
