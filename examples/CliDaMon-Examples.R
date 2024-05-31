@@ -8,7 +8,10 @@ myClimateData_StationTA <-
   as.data.frame (clidamonger::list.station.ta)
 
 myClimateData_TA_HD <-
-  as.data.frame (clidamonger::data.ta.hd)
+  data.frame (
+    clidamonger::data.ta.hd,
+    row.names = clidamonger::data.ta.hd$ID_Data
+  )
 
 myClimateData_Sol <-
   as.data.frame (clidamonger::data.sol)
