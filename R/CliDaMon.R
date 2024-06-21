@@ -176,6 +176,8 @@
 #'
 #' DF_Evaluation:        a dataframe containing climate data for all considered months.
 #'
+#' DF_EvaluationByYear:  a dataframe containing annual data for all considered evaluation years.
+#'
 #' DF_StationInfo:       a dataframe containing information about the used climate stations.
 #'
 #' DF_FunctionArguments: a dataframe containing the values of all function arguments (one row).
@@ -1776,7 +1778,138 @@ ClimateByMonth <- function (
 
 
   ###################################################################################X
-  ##  4.2  Prepare the dataframes for output -----
+  ##  4.2  Compile the output dataframes "myDF_EvaluationByYear"  -----
+  ##  from "myDF_Evaluation"
+
+  ## The output aggregates the evaluation period annual values
+
+  VariableNames_EvaluationByYear <-
+    c(
+      "D",
+      "HD",
+      "HDD",
+      "RHDD",
+      "G_Hor",
+      "G_E",
+      "G_E_Inclined",
+      "G_SE",
+      "G_SE_Inclined",
+      "G_S",
+      "G_S_Inclined",
+      "G_SW",
+      "G_SW_Inclined",
+      "G_W",
+      "G_W_Inclined",
+      "G_NW",
+      "G_NW_Inclined",
+      "G_N",
+      "G_N_Inclined",
+      "G_NE",
+      "G_NE_Inclined",
+      "G_Hor_HD",
+      "G_E_HD",
+      "G_E_Inclined_HD",
+      "G_SE_HD",
+      "G_SE_Inclined_HD",
+      "G_S_HD",
+      "G_S_Inclined_HD",
+      "G_SW_HD",
+      "G_SW_Inclined_HD",
+      "G_W_HD",
+      "G_W_Inclined_HD",
+      "G_NW_HD",
+      "G_NW_Inclined_HD",
+      "G_N_HD",
+      "G_N_Inclined_HD",
+      "G_NE_HD",
+      "G_NE_Inclined_HD"
+    )
+
+
+
+  #n_Year_Evaluation <- nrow (myDF_Evaluation)/12
+
+  myDF_EvaluationByYear <-
+    data.frame (
+      ID_EvalYear =
+        AuxFunctions::Format_Integer_LeadingZeros (
+          myInteger = c (1:n_Year_Evaluation),
+          myWidth = 2,
+          myPrefix = "EY_"
+          ),
+      Index_EvalYear = c (1:n_Year_Evaluation)
+    )
+  rownames (myDF_EvaluationByYear) <- myDF_EvaluationByYear$ID_EvalYear
+
+
+
+  #i_Year <- 1
+
+  for (i_Year in (1:n_Year_Evaluation)) {
+
+    CurrentRowsDFEval <- which (myDF_Evaluation$Index_EvalYear == i_Year)
+
+    myDF_EvaluationByYear$Label_Year [i_Year] <-
+      paste ( levels (as.factor (myDF_Evaluation$Year [CurrentRowsDFEval] )), collapse = "/"  )
+
+    myDF_EvaluationByYear$Label_Period [i_Year] <-
+      paste0 (
+        myDF_Evaluation$Month  [CurrentRowsDFEval [ 1] ], "/",
+        myDF_Evaluation$Year [CurrentRowsDFEval [ 1] ], "-",
+        myDF_Evaluation$Month  [CurrentRowsDFEval [12] ], "/",
+        myDF_Evaluation$Year [CurrentRowsDFEval [12] ]
+      )
+
+    myDF_EvaluationByYear [i_Year ,"TA"] <-
+      sum (
+        apply (
+          myDF_Evaluation [
+            CurrentRowsDFEval,
+            c ("TA", "D") ],
+          MARGIN = 1,
+          FUN = prod,
+          na.rm = TRUE
+        )
+      ) /
+      sum (
+        myDF_Evaluation [
+          CurrentRowsDFEval, "D" ]
+      )
+
+    myDF_EvaluationByYear [i_Year ,"TA_HD"] <-
+      sum (
+        apply (
+          myDF_Evaluation [
+            CurrentRowsDFEval,
+            c ("TA_HD", "HD") ],
+          MARGIN = 1,
+          FUN = prod,
+          na.rm = TRUE
+        )
+      ) /
+      sum (
+        myDF_Evaluation [
+          CurrentRowsDFEval, "HD" ]
+      )
+
+    myDF_EvaluationByYear [i_Year ,VariableNames_EvaluationByYear] <-
+      apply (
+        myDF_Evaluation [
+          CurrentRowsDFEval,
+          VariableNames_EvaluationByYear],
+        MARGIN = 2,
+        FUN = sum,
+        na.rm = TRUE
+        )
+
+
+  } # End loop for i_Year
+
+
+
+
+  ###################################################################################X
+  ##  4.3  Prepare the dataframes for output -----
 
   ## The output will be a list of all vectors
   ##
@@ -1809,12 +1942,14 @@ ClimateByMonth <- function (
         c (
           "DF_ClimCalc",
           "DF_Evaluation",
+          "DF_EvaluationByYear",
           "DF_StationInfo",
           "DF_FunctionArguments"
         ),
         c (
           ncol (myDF_ClimCalc),
           ncol (myDF_Evaluation),
+          ncol (myDF_EvaluationByYear),
           ncol (myDF_StationInfo),
           ncol (myDF_FunctionArguments)
         )
@@ -1833,6 +1968,7 @@ ClimateByMonth <- function (
     list (
       DF_ClimCalc          = myDF_ClimCalc,
       DF_Evaluation        = myDF_Evaluation,
+      DF_EvaluationByYear  = myDF_EvaluationByYear,
       DF_StationInfo       = myDF_StationInfo,
       DF_FunctionArguments = myDF_FunctionArguments,
       DF_OutputStructure   = myDF_OutputStructure

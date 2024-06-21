@@ -146,6 +146,8 @@ is an average year.
 
 DF_Evaluation:        a dataframe containing climate data for all considered months.
 
+DF_EvaluationByYear:  a dataframe containing annual data for all considered evaluation years.
+
 DF_StationInfo:       a dataframe containing information about the used climate stations.
 
 DF_FunctionArguments: a dataframe containing the values of all function arguments (one row).
@@ -257,6 +259,7 @@ ResultOfFunction <-
 
 ResultOfFunction$DF_ClimCalc          # Result for an average year in the period
 ResultOfFunction$DF_Evaluation        # Result for all considered months
+ResultOfFunction$DF_EvaluationByYear  # Annual values vor all evaluation years
 ResultOfFunction$DF_StationInfo       # Meta data of the used weather stations
 ResultOfFunction$DF_FunctionArguments # Values of all function arguments
 ResultOfFunction$DF_OutputStructure   # Information about output structure

@@ -87,6 +87,7 @@ ResultOfFunction <-
 
 ResultOfFunction$DF_ClimCalc          # Result for an average year in the period
 ResultOfFunction$DF_Evaluation        # Result for all considered months
+ResultOfFunction$DF_EvaluationByYear  # Annual values vor all evaluation years
 ResultOfFunction$DF_StationInfo       # Meta data of the used weather stations
 ResultOfFunction$DF_FunctionArguments # Values of all function arguments
 ResultOfFunction$DF_OutputStructure   # Information about output structure
