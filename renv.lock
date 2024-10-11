@@ -23,13 +23,13 @@
     },
     "clidamonger": {
       "Package": "clidamonger",
-      "Version": "1.1.0",
+      "Version": "1.2.0",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "RSPM",
       "Requirements": [
         "R"
       ],
-      "Hash": "913cca06caa2795d3c3591aa6d8219de"
+      "Hash": "0b3efc5f0f9c84a66483c7e2953b5a1c"
     },
     "renv": {
       "Package": "renv",

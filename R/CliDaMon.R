@@ -1174,37 +1174,66 @@ ClimateByMonth <- function (
         AuxFunctions::Replace_NA (myDF_Evaluation$TA.Input.03, 0) ) /
     myDF_Evaluation$CT
 
+
+  ## 2024-10-11
   # When the data completeness of a month is below 1.0
-  # the heating days are supplemented using the ratio heating days to
-  # available days of the month.
+  # the heating days are corrected by multiplying with the inverse completeness factor
   myDF_Evaluation$HD <-
-    (myDF_StationInfo$Factor_Weighting [1] *
-       myDF_Evaluation$CT.Input.01 *
+    myDF_StationInfo$Factor_Weighting [1] *
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.01, 0) *
        AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.01, 0)  +
        myDF_StationInfo$Factor_Weighting [2] *
-       myDF_Evaluation$CT.Input.02 *
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.02, 0) *
        AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.02, 0)  +
        myDF_StationInfo$Factor_Weighting [3] *
-       myDF_Evaluation$CT.Input.03 *
-       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0) ) /
-    myDF_Evaluation$CT
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.03, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0)
 
+
+## 2024-10-11 This formula had to be corrected
+#
+# When the data completeness of a month is below 1.0
+# the heating days are supplemented using the ratio heating days to
+# available days of the month.
+# myDF_Evaluation$HD <-
+#   (myDF_StationInfo$Factor_Weighting [1] *
+#      myDF_Evaluation$CT.Input.01 *
+#      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.01, 0)  +
+#      myDF_StationInfo$Factor_Weighting [2] *
+#      myDF_Evaluation$CT.Input.02 *
+#      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.02, 0)  +
+#      myDF_StationInfo$Factor_Weighting [3] *
+#      myDF_Evaluation$CT.Input.03 *
+#      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0) ) /
+#   myDF_Evaluation$CT
+
+  myDF_Evaluation$TA_HD <-
+     myDF_StationInfo$Factor_Weighting [1] *
+     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.01, 0) +
+     myDF_StationInfo$Factor_Weighting [2] *
+     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.02, 0) +
+     myDF_StationInfo$Factor_Weighting [3] *
+     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.03, 0)
+
+
+  ## 2024-10-11 This formula had to be corrected
+  #
   # The temperatures during heating days are weighted by completeness
   # AND heating days
-  myDF_Evaluation$TA_HD <-
-    (myDF_StationInfo$Factor_Weighting [1] *
-       myDF_Evaluation$CT.Input.01 *
-       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.01, 0) *
-       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.01, 0) +
-       myDF_StationInfo$Factor_Weighting [2] *
-       myDF_Evaluation$CT.Input.02 *
-       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.02, 0) *
-       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.02, 0)  +
-       myDF_StationInfo$Factor_Weighting [3] *
-       myDF_Evaluation$CT.Input.03 *
-       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0)  *
-       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.03, 0) ) /
-    (myDF_Evaluation$CT * myDF_Evaluation$HD)
+  # myDF_Evaluation$TA_HD <-
+  #   (myDF_StationInfo$Factor_Weighting [1] *
+  #      myDF_Evaluation$CT.Input.01 *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.01, 0) *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.01, 0) +
+  #      myDF_StationInfo$Factor_Weighting [2] *
+  #      myDF_Evaluation$CT.Input.02 *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.02, 0) *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.02, 0)  +
+  #      myDF_StationInfo$Factor_Weighting [3] *
+  #      myDF_Evaluation$CT.Input.03 *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0)  *
+  #      AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.03, 0) ) /
+  #   (myDF_Evaluation$CT * myDF_Evaluation$HD)
 
   myDF_Evaluation$CT <-
     round (myDF_Evaluation$CT, n_Decimal_CT)
