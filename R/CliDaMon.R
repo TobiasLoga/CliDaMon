@@ -1207,13 +1207,22 @@ ClimateByMonth <- function (
 #      AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0) ) /
 #   myDF_Evaluation$CT
 
+
+  # The temperatures during heating days are weighted by completeness-corrected heating days
   myDF_Evaluation$TA_HD <-
-     myDF_StationInfo$Factor_Weighting [1] *
-     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.01, 0) +
-     myDF_StationInfo$Factor_Weighting [2] *
-     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.02, 0) +
-     myDF_StationInfo$Factor_Weighting [3] *
-     AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.03, 0)
+    (myDF_StationInfo$Factor_Weighting [1] *
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.01, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.01, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.01, 0) +
+       myDF_StationInfo$Factor_Weighting [2] *
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.02, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.02, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.02, 0)  +
+       myDF_StationInfo$Factor_Weighting [3] *
+       AuxFunctions::Replace_NA (1 / myDF_Evaluation$CT.Input.03, 0) *
+       AuxFunctions::Replace_NA (myDF_Evaluation$HD.Input.03, 0)  *
+       AuxFunctions::Replace_NA (myDF_Evaluation$TA_HD.Input.03, 0) ) /
+    myDF_Evaluation$HD
 
 
   ## 2024-10-11 This formula had to be corrected
