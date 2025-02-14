@@ -68,3 +68,8 @@ can be found in the help section of the package.
 
 ---
 
+### Views
+
+ <a href="https://trackgit.com">
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/m74l4hq2zgsl8hgm7dm7" alt="trackgit-views" />
+</a>
